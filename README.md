@@ -24,7 +24,7 @@ The original dataset is not included in this repository. Download the data
 from the source page and save it locally as:
 syracuse_womens_lacrosse_2015_players.csv
 
-Phase A: Ground Truth and Baseline LLM Evaluation
+## Phase A: Ground Truth and Baseline LLM Evaluation
 
 In Phase A, I tested whether ChatGPT GPT-5.6 Thinking could answer factual questions directly from the uploaded CSV. I asked the model to identify the number of player-stat rows and the leaders in goals, assists, total points, ground balls, caused turnovers, draw controls, and shooting percentage. I also asked it to report the top three goal scorers and identify duplicate player names.
 
@@ -36,7 +36,7 @@ The shooting-percentage question also exposed a weakness in my original ground-t
 
 This was an important finding because it showed that ground truth is only reliable when the validation code correctly handles edge cases. I revised the evaluation approach to identify every row equal to the maximum value instead of returning only the first occurrence.
 
-Phase B: Derived Metrics and Judgment Questions
+## Phase B: Derived Metrics and Judgment Questions
 
 Phase B moved beyond direct lookups and required a measurable definition for the qualitative concept of a “game changer.” Instead of allowing the model to create its own interpretation, I explicitly defined a Game Changer Score.
 
@@ -73,7 +73,7 @@ I then uploaded the same CSV to the language model and supplied the complete eli
 
 The Phase B result showed that prompt specificity had a major effect on analytical reliability. A vague question such as “Who is the game changer?” would allow the model to choose its own criteria. By explicitly defining eligibility, per-game calculations, normalization, weights, and output requirements, I converted the judgment question into a reproducible analytical task.
 
-Coaching Recommendation
+## Coaching Recommendation
 
 Within the limits of this player-level dataset, I recommend that the team place slightly more emphasis on developing its defense and possession play while maintaining its existing offensive strengths.
 
@@ -85,7 +85,7 @@ Kelly Cross should receive focused development as a potential future game change
 
 This recommendation must be interpreted cautiously. The dataset contains cumulative player statistics but does not include minutes played, player positions, injuries, opponent strength, detailed game situations, or the relationship between individual performances and game outcomes. The Game Changer Score also depends on subjective weights that favor offense. Min-max normalization is sensitive to extreme values, particularly Kempney’s unusually high draw-control total. Therefore, this analysis identifies promising patterns but cannot prove that defensive development alone would cause the team to win two additional games.
 
-Overall Reflection
+## Overall Reflection
 
 The experiment showed that a language model can be effective when working with a small, structured dataset, especially when the prompt supplies exact definitions and requires visible calculations. In Phase A, the model accurately answered factual questions but incorrectly characterized the dataset. It also helped reveal a flaw in my own Python validation code by correctly preserving a statistical tie that idxmax() had hidden.
 
